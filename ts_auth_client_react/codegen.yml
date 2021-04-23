@@ -12,4 +12,3 @@ generates:
       withComponent: false
       withHooks: true
       reactApolloVersion: 3
-  

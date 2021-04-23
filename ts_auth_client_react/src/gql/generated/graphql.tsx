@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/client';
 import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -12,9 +12,10 @@ export type Scalars = {
   Float: number;
 };
 
-export type Query = {
-  __typename?: 'Query';
-  profile?: Maybe<Profile>;
+export type AccessToken = {
+  __typename?: 'AccessToken';
+  ukey?: Maybe<Scalars['ID']>;
+  access_token?: Maybe<Scalars['ID']>;
 };
 
 export type Mutation = {
@@ -69,10 +70,9 @@ export type Profile = {
   email?: Maybe<Scalars['String']>;
 };
 
-export type AccessToken = {
-  __typename?: 'AccessToken';
-  ukey?: Maybe<Scalars['ID']>;
-  access_token?: Maybe<Scalars['ID']>;
+export type Query = {
+  __typename?: 'Query';
+  profile?: Maybe<Profile>;
 };
 
 export type RegisterMutationVariables = Exact<{
@@ -115,10 +115,12 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = (
   { __typename?: 'Mutation' }
-  & { login?: Maybe<(
-    { __typename?: 'AccessToken' }
-    & Pick<AccessToken, 'ukey' | 'access_token'>
-  )> }
+  & {
+    login?: Maybe<(
+      { __typename?: 'AccessToken' }
+      & Pick<AccessToken, 'ukey' | 'access_token'>
+    )>
+  }
 );
 
 export type ForgotPasswordMutationVariables = Exact<{
@@ -155,10 +157,12 @@ export type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ProfileQuery = (
   { __typename?: 'Query' }
-  & { profile?: Maybe<(
-    { __typename?: 'Profile' }
-    & Pick<Profile, 'email'>
-  )> }
+  & {
+    profile?: Maybe<(
+      { __typename?: 'Profile' }
+      & Pick<Profile, 'email'>
+    )>
+  }
 );
 
 
@@ -189,8 +193,8 @@ export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMuta
  * });
  */
 export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>) {
-        return ApolloReactHooks.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, baseOptions);
+}
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
@@ -219,8 +223,8 @@ export type ResendConfirmationMutationFn = ApolloReactCommon.MutationFunction<Re
  * });
  */
 export function useResendConfirmationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ResendConfirmationMutation, ResendConfirmationMutationVariables>) {
-        return ApolloReactHooks.useMutation<ResendConfirmationMutation, ResendConfirmationMutationVariables>(ResendConfirmationDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<ResendConfirmationMutation, ResendConfirmationMutationVariables>(ResendConfirmationDocument, baseOptions);
+}
 export type ResendConfirmationMutationHookResult = ReturnType<typeof useResendConfirmationMutation>;
 export type ResendConfirmationMutationResult = ApolloReactCommon.MutationResult<ResendConfirmationMutation>;
 export type ResendConfirmationMutationOptions = ApolloReactCommon.BaseMutationOptions<ResendConfirmationMutation, ResendConfirmationMutationVariables>;
@@ -249,8 +253,8 @@ export type ConfirmMutationFn = ApolloReactCommon.MutationFunction<ConfirmMutati
  * });
  */
 export function useConfirmMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ConfirmMutation, ConfirmMutationVariables>) {
-        return ApolloReactHooks.useMutation<ConfirmMutation, ConfirmMutationVariables>(ConfirmDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<ConfirmMutation, ConfirmMutationVariables>(ConfirmDocument, baseOptions);
+}
 export type ConfirmMutationHookResult = ReturnType<typeof useConfirmMutation>;
 export type ConfirmMutationResult = ApolloReactCommon.MutationResult<ConfirmMutation>;
 export type ConfirmMutationOptions = ApolloReactCommon.BaseMutationOptions<ConfirmMutation, ConfirmMutationVariables>;
@@ -283,8 +287,8 @@ export type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, 
  * });
  */
 export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
-        return ApolloReactHooks.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, baseOptions);
+}
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
 export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
@@ -313,8 +317,8 @@ export type ForgotPasswordMutationFn = ApolloReactCommon.MutationFunction<Forgot
  * });
  */
 export function useForgotPasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ForgotPasswordMutation, ForgotPasswordMutationVariables>) {
-        return ApolloReactHooks.useMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(ForgotPasswordDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(ForgotPasswordDocument, baseOptions);
+}
 export type ForgotPasswordMutationHookResult = ReturnType<typeof useForgotPasswordMutation>;
 export type ForgotPasswordMutationResult = ApolloReactCommon.MutationResult<ForgotPasswordMutation>;
 export type ForgotPasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ForgotPasswordMutation, ForgotPasswordMutationVariables>;
@@ -344,8 +348,8 @@ export type ResetPasswordMutationFn = ApolloReactCommon.MutationFunction<ResetPa
  * });
  */
 export function useResetPasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ResetPasswordMutation, ResetPasswordMutationVariables>) {
-        return ApolloReactHooks.useMutation<ResetPasswordMutation, ResetPasswordMutationVariables>(ResetPasswordDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<ResetPasswordMutation, ResetPasswordMutationVariables>(ResetPasswordDocument, baseOptions);
+}
 export type ResetPasswordMutationHookResult = ReturnType<typeof useResetPasswordMutation>;
 export type ResetPasswordMutationResult = ApolloReactCommon.MutationResult<ResetPasswordMutation>;
 export type ResetPasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ResetPasswordMutation, ResetPasswordMutationVariables>;
@@ -373,8 +377,8 @@ export type LogoutMutationFn = ApolloReactCommon.MutationFunction<LogoutMutation
  * });
  */
 export function useLogoutMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LogoutMutation, LogoutMutationVariables>) {
-        return ApolloReactHooks.useMutation<LogoutMutation, LogoutMutationVariables>(LogoutDocument, baseOptions);
-      }
+  return ApolloReactHooks.useMutation<LogoutMutation, LogoutMutationVariables>(LogoutDocument, baseOptions);
+}
 export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = ApolloReactCommon.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = ApolloReactCommon.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
@@ -402,11 +406,11 @@ export const ProfileDocument = gql`
  * });
  */
 export function useProfileQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ProfileQuery, ProfileQueryVariables>) {
-        return ApolloReactHooks.useQuery<ProfileQuery, ProfileQueryVariables>(ProfileDocument, baseOptions);
-      }
+  return ApolloReactHooks.useQuery<ProfileQuery, ProfileQueryVariables>(ProfileDocument, baseOptions);
+}
 export function useProfileLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ProfileQuery, ProfileQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<ProfileQuery, ProfileQueryVariables>(ProfileDocument, baseOptions);
-        }
+  return ApolloReactHooks.useLazyQuery<ProfileQuery, ProfileQueryVariables>(ProfileDocument, baseOptions);
+}
 export type ProfileQueryHookResult = ReturnType<typeof useProfileQuery>;
 export type ProfileLazyQueryHookResult = ReturnType<typeof useProfileLazyQuery>;
 export type ProfileQueryResult = ApolloReactCommon.QueryResult<ProfileQuery, ProfileQueryVariables>;
